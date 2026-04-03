@@ -43,6 +43,6 @@ Add whatever helps you do your job. This is your cheat sheet.
 
 - Base URL: `http://31.97.147.124:3000`
 - Header de autenticación: `X-API-Key`
-- Token IA comparador-periodos: `mqtth_ia_ec466d136dfbadde4ea0909d0051a3ee74e30b0ef411fbdfdf000fbd789c6159`
+- Token IA comparador-periodos: `mqtth_ia_aabdaaffd52de9c3c39f8e9e3e9c91ebe1caf9c94dcdb9861f6cccf8c5349866`
 - Alcance esperado: empresa única asociada a la API key
 - Regla: usar este token para llamadas a `/api/ia/*` y no exponerlo en respuestas al usuario salvo que lo pida explícitamente

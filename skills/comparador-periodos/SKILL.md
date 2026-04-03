@@ -92,17 +92,18 @@ Si la consulta está soportada por la API de IA de MQTTH, preferir:
 GET /api/ia/oee/compare
  ?tipo={periodo|entidad}
  &nivel={company|planta|area|linea|maquina}
- &id_a={uuid|any}
+ &id_a={uuid|all}
  &id_b={uuid}
  &desde_a={date}&hasta_a={date}
  &desde_b={date}&hasta_b={date}
 ```
 
-Notas críticas:
-- `entidad_a.*` y `entidad_b.*` vienen con KPIs en escala `0–1`.
-- `deltas.oee`, `deltas.disponibilidad`, `deltas.rendimiento`, `deltas.calidad` ya vienen en **puntos porcentuales (pp)**.
-- `analysis` trae `driver_kpi`, `causa_probable`, `ganador` y `brecha_oee_pp`.
+Notas críticas observadas en pruebas reales:
+- `entidad_a.*` y `entidad_b.*` vienen con KPIs en escala **0–100**.
+- `deltas.oee_pp`, `deltas.disponibilidad_pp`, `deltas.rendimiento_pp`, `deltas.calidad_pp` ya vienen en **puntos porcentuales (pp)**.
+- `analysis` trae `driver_kpi`, `causa_probable`, `ganador`, `delta_pp` y `brecha_oee_pp`.
 - Si una entidad viene `null`, reportar que no hay datos en ese rango.
+- Si el endpoint devuelve `warnings`, traducirlos a lenguaje humano.
 
 ### Endpoint legacy genérico
 
@@ -204,9 +205,12 @@ Interpretación estándar de fechas:
 
 Si se usa MQTTH API IA:
 1. Llamar primero `/api/ia/catalog/hierarchy` para resolver nombres a IDs cuando haga falta.
-2. Usar `/api/ia/oee/compare` para comparar dos periodos o dos entidades.
-3. Usar `/api/ia/oee/historia` para tendencias, turnos, referencias y series.
-4. Usar `/api/ia/oee/ranking` para mejores/peores o rankings jerárquicos.
+2. Cachear durante la sesión el mapa nombre → id para plantas, áreas, líneas y máquinas.
+3. Usar `/api/ia/oee/compare` para comparar dos periodos o dos entidades.
+4. Usar `/api/ia/oee/historia` para tendencias, turnos, referencias y series.
+5. Usar `/api/ia/oee/ranking` para mejores/peores o rankings jerárquicos.
+6. Si `warnings` indica falta de jerarquía o falta de hijos, explicarlo claramente y no inventar comparaciones.
+7. Para uso en Telegram, responder en texto natural breve; no devolver JSON crudo salvo que el usuario lo pida.
 
 Ejemplo MQTTH:
 
@@ -229,11 +233,12 @@ Si no existe un endpoint comparador, hacer dos llamadas separadas y calcular los
 ### Paso 4: Interpretar deltas
 
 Si la respuesta viene de MQTTH `/api/ia/oee/compare`:
-- Mostrar `entidad_a.*` y `entidad_b.*` como porcentaje multiplicando x100.
-- Mostrar `deltas.oee`, `deltas.disponibilidad`, `deltas.rendimiento`, `deltas.calidad` directamente en **pp**.
-- No recalcular esos deltas ni volver a multiplicarlos.
+- Mostrar `entidad_a.*` y `entidad_b.*` como `%` directos, sin multiplicar por 100.
+- Mostrar `deltas.oee_pp`, `deltas.disponibilidad_pp`, `deltas.rendimiento_pp`, `deltas.calidad_pp` directamente en **pp**.
+- No recalcular esos deltas ni reconvertir los KPIs salvo que el backend cambie de contrato.
 - Interpretar `analysis.driver_kpi` como el principal impulsor del cambio.
 - Traducir `analysis.causa_probable` a lenguaje humano.
+- Si `deltas` o `analysis` vienen `null`, explicar que falta uno de los periodos o que no hay datos comparables.
 
 Si la respuesta no trae deltas listos, calcular para cada KPI:
 - **Delta absoluto** = valor_b - valor_a
@@ -272,14 +277,21 @@ Estructura recomendada:
 Periodo A: {nombre} ({desde} — {hasta})
 Periodo B: {nombre} ({desde} — {hasta})
 
-[KPI principal]: A: {valor_a} → B: {valor_b} ({delta_pct}% {↑/↓})
-[KPI 2]: A: {valor_a} → B: {valor_b} ({delta_pct}% {↑/↓})
-[KPI 3]: A: {valor_a} → B: {valor_b} ({delta_pct}% {↑/↓})
+OEE: A: {valor_a}% → B: {valor_b}% ({delta_pp} pp)
+Disponibilidad: A: {valor_a}% → B: {valor_b}% ({delta_pp} pp)
+Rendimiento: A: {valor_a}% → B: {valor_b}% ({delta_pp} pp)
+Calidad: A: {valor_a}% → B: {valor_b}% ({delta_pp} pp)
 
-[Mayor diferencia]: {KPI} cambió {delta}. Causa probable: {explicación}
+[Mayor diferencia]: {KPI} cambió {delta_pp} pp. Causa probable: {explicación}
 
 [Acción sugerida]: {recomendación específica}
 ```
+
+Para Telegram y chats rápidos:
+- Priorizar respuestas de 4–8 líneas.
+- No devolver JSON salvo que el usuario lo pida.
+- Liderar con el hallazgo principal.
+- Si no hay datos, decirlo en la primera línea.
 
 Mantener el resumen en menos de 250 palabras y cerrar siempre con una acción sugerida o una pregunta de seguimiento.
 
