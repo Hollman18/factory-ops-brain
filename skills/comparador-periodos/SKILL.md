@@ -27,13 +27,23 @@ No usar para consultas en tiempo real como “cómo va la línea 2 ahora”.
 
 ## Variables de entorno
 
-- `API_BASE_URL` — Base URL del backend FastAPI
-- `API_TOKEN` — Bearer token para autenticación
+- `API_BASE_URL` — Base URL del backend FastAPI o de la API de IA
+- `API_TOKEN` — Bearer token para autenticación de endpoints legacy
 - `DEFAULT_TIMEZONE` — Timezone IANA por defecto
+
+## Referencias
+
+- Si la consulta usa la API de IA de MQTTH, leer `references/mqtth-api-ia.md`.
+- Mantener secretos fuera del `SKILL.md`. Guardar tokens y claves solo en notas locales del workspace o variables de entorno.
 
 ## Fuentes de datos
 
 Nunca consultar PostgreSQL directamente. Llamar siempre la API REST. Confiar en la API para agregaciones ponderadas, recalculaciones y semántica de negocio.
+
+Para integraciones MQTTH con endpoints `/api/ia/*`:
+- Autenticarse con header `X-API-Key`.
+- Considerar que la API key ya filtra por empresa.
+- Preferir el catálogo jerárquico al inicio de la sesión para resolver nombres a IDs.
 
 ## Endpoints principales
 
@@ -74,7 +84,29 @@ GET /api/metrics/spc
 
 ## Endpoint preferido para comparación
 
-Preferir este endpoint cuando compare dos cosas:
+### MQTTH API IA
+
+Si la consulta está soportada por la API de IA de MQTTH, preferir:
+
+```text
+GET /api/ia/oee/compare
+ ?tipo={periodo|entidad}
+ &nivel={company|planta|area|linea|maquina}
+ &id_a={uuid|any}
+ &id_b={uuid}
+ &desde_a={date}&hasta_a={date}
+ &desde_b={date}&hasta_b={date}
+```
+
+Notas críticas:
+- `entidad_a.*` y `entidad_b.*` vienen con KPIs en escala `0–1`.
+- `deltas.oee`, `deltas.disponibilidad`, `deltas.rendimiento`, `deltas.calidad` ya vienen en **puntos porcentuales (pp)**.
+- `analysis` trae `driver_kpi`, `causa_probable`, `ganador` y `brecha_oee_pp`.
+- Si una entidad viene `null`, reportar que no hay datos en ese rango.
+
+### Endpoint legacy genérico
+
+Si el backend expone el comparador legacy, también se puede usar:
 
 ```text
 GET /api/metrics/compare
@@ -83,21 +115,6 @@ GET /api/metrics/compare
  &tipo_comparacion={periodo|entidad|turno|referencia}
  &id_a={uuid}&desde_a={date}&hasta_a={date}
  &id_b={uuid}&desde_b={date}&hasta_b={date}
-```
-
-Ejemplo de respuesta:
-
-```json
-{
-  "entidad_a": { "nombre": "Planta BAQ", "oee": 0.784, "und_producidas": 42300 },
-  "entidad_b": { "nombre": "Planta MDE", "oee": 0.712, "und_producidas": 38100 },
-  "deltas": { "oee": 0.072, "und_producidas": 4200 },
-  "mayor_diferencia": {
-    "kpi": "disponibilidad",
-    "delta": 0.094,
-    "causa_probable": "..."
-  }
-}
 ```
 
 ## Tipos de comparación
@@ -153,9 +170,10 @@ Ejemplos:
 - “Cuál planta tiene peor disponibilidad”
 
 Acción:
-1. Consultar OEE a nivel corporación agrupado por planta.
-2. Ordenar por KPI solicitado.
-3. Identificar la pérdida dominante del peor desempeño.
+1. Si existe MQTTH API IA, usar `/api/ia/oee/ranking?nivel=company&id=any&...`.
+2. Si no, consultar OEE a nivel corporación agrupado por planta.
+3. Ordenar por KPI solicitado.
+4. Identificar la pérdida dominante del peor desempeño.
 
 ## Flujo de trabajo
 
@@ -184,20 +202,40 @@ Interpretación estándar de fechas:
 
 ### Paso 3: Llamar la API
 
-Preferir `/api/metrics/compare` cuando se comparen dos cosas. Para rankings, usar el endpoint del módulo con `agrupar_por`.
+Si se usa MQTTH API IA:
+1. Llamar primero `/api/ia/catalog/hierarchy` para resolver nombres a IDs cuando haga falta.
+2. Usar `/api/ia/oee/compare` para comparar dos periodos o dos entidades.
+3. Usar `/api/ia/oee/historia` para tendencias, turnos, referencias y series.
+4. Usar `/api/ia/oee/ranking` para mejores/peores o rankings jerárquicos.
 
-Ejemplo:
+Ejemplo MQTTH:
+
+```bash
+curl -s -H "X-API-Key: ${MQTTH_IA_API_KEY}" \
+  "${MQTTH_API_BASE_URL}/api/ia/oee/compare?tipo=periodo&nivel=planta&id_a=${PLANTA_ID}&desde_a=2026-02-01&hasta_a=2026-02-28&desde_b=2026-03-01&hasta_b=2026-03-31"
+```
+
+Si se usa backend legacy, preferir `/api/metrics/compare` cuando se comparen dos cosas. Para rankings, usar el endpoint del módulo con `agrupar_por`.
+
+Ejemplo legacy:
 
 ```bash
 curl -s -H "Authorization: Bearer ${API_TOKEN}" \
   "${API_BASE_URL}/api/metrics/compare?modulo=oee&tipo_comparacion=periodo&nivel=planta&id_a=${PLANTA_ID}&desde_a=2026-02-01&hasta_a=2026-02-28&id_b=${PLANTA_ID}&desde_b=2026-03-01&hasta_b=2026-03-31"
 ```
 
-Si `/compare` no existe, hacer dos llamadas separadas y calcular los deltas manualmente.
+Si no existe un endpoint comparador, hacer dos llamadas separadas y calcular los deltas manualmente.
 
 ### Paso 4: Interpretar deltas
 
-Calcular para cada KPI:
+Si la respuesta viene de MQTTH `/api/ia/oee/compare`:
+- Mostrar `entidad_a.*` y `entidad_b.*` como porcentaje multiplicando x100.
+- Mostrar `deltas.oee`, `deltas.disponibilidad`, `deltas.rendimiento`, `deltas.calidad` directamente en **pp**.
+- No recalcular esos deltas ni volver a multiplicarlos.
+- Interpretar `analysis.driver_kpi` como el principal impulsor del cambio.
+- Traducir `analysis.causa_probable` a lenguaje humano.
+
+Si la respuesta no trae deltas listos, calcular para cada KPI:
 - **Delta absoluto** = valor_b - valor_a
 - **Delta porcentual** = `(valor_b - valor_a) / valor_a * 100`
 - **Dirección** = mejora o deterioro
