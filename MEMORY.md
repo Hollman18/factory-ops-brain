@@ -9,3 +9,4 @@
 - El heartbeat debe ser extremadamente liviano y usarse solo para alertas críticas: anomalías, desviaciones fuertes, riesgo de falla o riesgo de incumplir meta mensual.
 - El cron/reporting queda orientado por rol: gerencia/directivos con informes semanales y mensuales; supervisión con cierre por turno y diario; mantenimiento y calidad con enfoque técnico/operativo; operador normalmente bajo demanda.
 - Se aprobaron plantillas de informes por rol y alerta crítica para estandarizar respuestas futuras.
+- Quedó mandatado en `AGENTS.md` que cuando un usuario de fábrica escriba por primera vez pidiendo datos, antes de responder se debe pedir nombre y rol, guardar el perfil y solo después continuar.
