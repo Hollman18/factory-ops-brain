@@ -1,0 +1,27 @@
+{
+  "name": "Hollman Habbib",
+  "role": "Gerente",
+  "role_class": "Gerente",
+  "channel": "telegram",
+  "sender_id": "1081619589",
+  "username": "Hollman_Habbib",
+  "first_seen": "2026-04-04T17:30:00Z",
+  "last_seen": "2026-04-04T17:30:00Z",
+  "preferences": {
+    "reports": {
+      "weekly": true,
+      "monthly": true,
+      "daily": false,
+      "shift_close": false
+    },
+    "alerts": {
+      "critical_only": true,
+      "target_risk": true,
+      "anomalies": true
+    }
+  },
+  "notes": [
+    "Perfil inicial creado durante el diseño del agente de fábrica.",
+    "Rol base aprobado por el usuario: Gerente."
+  ]
+}
