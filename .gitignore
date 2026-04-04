@@ -1,0 +1,29 @@
+# OpenClaw local/runtime state
+.openclaw/
+
+# Secrets / local env
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs / temp
+*.log
+tmp/
+temp/
+
+# Node noise
+node_modules/
+
+# Optional local-only files
+*.bak
