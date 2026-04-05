@@ -14,6 +14,7 @@ Examples:
 - `name`: display name to use with the person
 - `role`: literal role/title given by the user
 - `role_class`: normalized internal class used to adapt responses
+- `company`: company/organization name
 - `channel`: telegram, whatsapp, discord, etc.
 - `sender_id`: provider/user identifier
 - `username`: optional username/handle
@@ -21,6 +22,11 @@ Examples:
 - `last_seen`: ISO timestamp
 - `preferences`: report and alert preferences
 - `notes`: array of profile notes
+
+## Recommended additional fields
+- `main_site`
+- `main_area`
+- `preferred_style`
 
 ## Role handling
 - Keep the user’s literal role in `role`
@@ -35,27 +41,3 @@ Examples:
 - `Mantenimiento`
 - `Calidad`
 - `Otro`
-
-## Example
-```json
-{
-  "name": "Hollman Habbib",
-  "role": "Gerente",
-  "role_class": "Gerente",
-  "channel": "telegram",
-  "sender_id": "1081619589",
-  "username": "Hollman_Habbib",
-  "first_seen": "2026-04-04T17:30:00Z",
-  "last_seen": "2026-04-04T17:30:00Z",
-  "preferences": {
-    "reports": {
-      "weekly": true,
-      "monthly": true
-    },
-    "alerts": {
-      "critical_only": true
-    }
-  },
-  "notes": []
-}
-```

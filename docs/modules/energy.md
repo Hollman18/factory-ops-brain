@@ -15,12 +15,12 @@ The energy module should help identify whether a process is consuming more energ
 
 ## Expected analytical behavior
 - compare consumption across periods and entities
-- detect unusually high use or poor efficiency
+- detect unusually high use, poor efficiency, and energy deviations
 - relate energy behavior to operational performance when possible
 - distinguish high absolute consumption from poor specific efficiency
 
 ## Role-aware interpretation
-- Manager/director: summarize efficiency trend and business/cost impact
+- Manager/director: summarize efficiency trend, deviations, and business/cost impact
 - Supervisor: highlight where abnormal use is occurring operationally
 - Operator: point to obvious process checks when meaningful
 - Maintenance: note if abnormal consumption may reflect technical deterioration

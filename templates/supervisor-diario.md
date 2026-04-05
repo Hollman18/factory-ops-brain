@@ -2,6 +2,7 @@
 
 - Daily summary
 - Best and worst performance
-- Key deviations
+- Main deviations
+- Key operational issue
 - Probable cause
 - Recommended action for next day

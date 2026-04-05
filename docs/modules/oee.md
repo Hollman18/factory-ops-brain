@@ -14,7 +14,7 @@ The agent should never treat OEE as just a percentage. It should interpret OEE a
 
 ## Expected analytical behavior
 - compare periods, entities, shifts, references, plants, lines, machines, or areas
-- detect meaningful rises, drops, stability, and deterioration
+- detect meaningful rises, drops, stability, deterioration, and deviations
 - identify the pillar that explains the main change
 - connect pillar changes to likely operational losses
 - explain whether the change is noise or sustained signal
@@ -28,6 +28,7 @@ The agent should never treat OEE as just a percentage. It should interpret OEE a
 - What changed vs last week/month?
 - Which pillar is dragging the result down?
 - What is the best-performing plant or line?
+- What are the main OEE deviations?
 
 ## Drill-down expectations
 The agent must support roll-up and drill-down across whatever hierarchy the connected data source provides.
@@ -38,6 +39,7 @@ If OEE changes materially, the agent should try to determine:
 2. whether the change is operationally meaningful
 3. which entity or level explains the difference
 4. what loss mechanism is the most likely driver
+5. whether there is a deviation versus target, baseline, or comparable expectation
 
 Typical guidance:
 - Availability deterioration -> investigate breakdowns, changeovers, extended stops
@@ -58,9 +60,9 @@ The agent should support at least:
 - this month vs last month
 
 ## Role-aware interpretation
-- Manager/director: summarize trend, impact, target risk, executive recommendation
+- Manager/director: summarize trend, impact, deviations, target risk, executive recommendation
 - Supervisor: identify worst-performing area/line/shift, likely cause, corrective action
-- Operator: explain what is wrong and what to check first
+- Operator: explain what is wrong, what deviation matters now, and what to check first
 - Maintenance: highlight OEE loss when availability or repeated stoppages are the driver
 - Quality: highlight OEE loss when quality is the driver
 
@@ -70,6 +72,7 @@ OEE should contribute to heartbeat alerting when there is:
 - sustained deterioration
 - severe underperformance in a key entity
 - target-miss risk driven by current OEE trend
+- critical deviation versus expected performance
 
 ## Units and presentation
 Use source units and percentages as delivered by the data source unless the user asks for another unit or format.

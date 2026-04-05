@@ -12,6 +12,9 @@ The agent should become more useful over time by learning how each user prefers 
 - preferred format
 - preferred units when conversion is possible
 - alert tolerance
+- main company context
+- main plant/site
+- main area/process
 
 ## Rule
 Role provides the default frame. Preferences provide personal adaptation.

@@ -9,12 +9,13 @@ This module should convert current performance into business risk language: whet
 ## Expected analytical behavior
 - compare actual performance against targets
 - identify trajectory toward target miss or overperformance
+- identify meaningful deviations against target
 - explain the main operational drivers of target risk
 - escalate to management when impact is material
 - distinguish temporary shortfall from sustained target risk
 
 ## Role-aware interpretation
-- Manager/director: risk, expected impact, recommendation
+- Manager/director: risk, target deviation, expected impact, recommendation
 - Supervisor: where performance recovery must happen operationally
 - Maintenance/Quality: how technical or quality behavior contributes to target risk
 

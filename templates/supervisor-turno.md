@@ -2,7 +2,7 @@
 
 - Shift summary
 - Key KPIs
-- Main losses
+- Main losses and deviations
 - Comparison vs previous comparable shift
 - Probable cause
 - Immediate action for the next shift

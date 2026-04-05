@@ -8,6 +8,7 @@ Periodic reports are standardized by role, but can be customized by each user. C
 - Report cadence should match the decision horizon of the role.
 - The user may ask to change frequency, focus, module mix, format, or detail level.
 - If a module lacks data, the report should say so clearly instead of fabricating analysis.
+- Reports should highlight the most relevant deviations of the period when they matter.
 
 ## Default report logic by role
 
@@ -19,6 +20,7 @@ Recommended defaults:
 Typical content:
 - main performance trend
 - major rises/drops
+- main deviations of the period
 - target risk
 - cross-entity comparison when relevant
 - major operational driver
@@ -43,6 +45,7 @@ Recommended defaults:
 
 Typical content when enabled:
 - short status
+- relevant deviation
 - what to check
 - what to do now
 
@@ -55,6 +58,7 @@ Recommended defaults:
 Typical content:
 - critical assets
 - deterioration signals
+- technical deviations
 - recurrence
 - intervention priority
 - technical recommendation
@@ -68,6 +72,7 @@ Recommended defaults:
 Typical content:
 - rejection / scrap / merma summary
 - critical process/reference
+- quality deviations
 - likely cause
 - containment recommendation
 
@@ -80,7 +85,7 @@ Typical content:
 - plan compliance
 - output progression
 - comparative performance
-- bottlenecks and risks
+- bottlenecks, risks, and relevant deviations
 
 ## Customization policy
 Users may request changes in:

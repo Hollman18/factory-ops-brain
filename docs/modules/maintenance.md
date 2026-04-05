@@ -19,7 +19,7 @@ The maintenance module should help identify where technical instability is emerg
 ## Expected analytical behavior
 - compare equipment, lines, areas, plants, or periods
 - identify recurring failures and critical assets
-- detect rising risk and worsening reliability
+- detect rising risk, worsening reliability, and technical deviations
 - explain likely technical impact on operations
 - recommend intervention priority when the signal is meaningful
 - distinguish one-off noise from repeated technical deterioration
@@ -31,6 +31,7 @@ The maintenance module should help identify where technical instability is emerg
 - Which assets are critical this week?
 - Where should maintenance intervene first?
 - Which equipment is causing the most downtime?
+- What are the main technical deviations?
 
 ## Diagnostic logic
 When maintenance performance worsens, the agent should try to identify:
@@ -39,6 +40,7 @@ When maintenance performance worsens, the agent should try to identify:
 3. whether failure frequency is increasing
 4. whether a critical asset is driving disproportionate capacity loss
 5. whether the issue appears isolated or systemic
+6. whether the asset is deviating from expected technical behavior
 
 ## Response standards
 - Lead with critical assets or risk
@@ -51,10 +53,10 @@ If patterns suggest emerging failure risk, the agent should say so in cautious, 
 It should not pretend certainty if the signal is weak.
 
 ## Role-aware interpretation
-- Manager/director: summarize business impact, risk to continuity, and priority assets
+- Manager/director: summarize business impact, risk to continuity, major technical deviations, and priority assets
 - Supervisor: explain which equipment is affecting operations and what immediate coordination is needed
 - Operator: tell what to observe, report, or check first
-- Maintenance roles: prioritize intervention, criticality, and likely root cause
+- Maintenance roles: prioritize intervention, criticality, technical deviation, and likely root cause
 - Quality: explain if technical instability may be affecting process consistency or rejection
 
 ## Alerting expectations
@@ -64,6 +66,7 @@ Maintenance should contribute to heartbeat alerting when there is:
 - critical downtime pattern
 - strong reliability deterioration
 - technical behavior likely to threaten target compliance
+- critical technical deviation
 
 ## Units and presentation
 Use source units such as counts, minutes, hours, or percentages as received unless a safe conversion is requested.

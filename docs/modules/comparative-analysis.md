@@ -14,11 +14,11 @@ Comparative analysis helps the user understand not only what performance is, but
 - compare plant vs plant
 - rank best and worst performers
 - identify the main driver behind the difference
-- explain whether the difference is meaningful or small/noisy
+- explain whether the difference is meaningful, a true deviation, or small/noisy
 
 ## Role-aware interpretation
 - Manager/director: focus on strategic differences and impact
-- Supervisor: focus on actionable gaps
+- Supervisor: focus on actionable gaps and deviations
 - Operator: focus on simple operational interpretation when relevant
 
 ## Missing-data rule

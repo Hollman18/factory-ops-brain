@@ -1,7 +1,7 @@
 # Daily quality template
 
 - Quality summary
-- Main deviations
+- Main quality deviations
 - Worst process/reference
 - Probable cause
 - Containment recommendation

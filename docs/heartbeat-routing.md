@@ -19,6 +19,7 @@ Heartbeat should detect:
 - elevated failure-risk pattern
 - target-miss risk
 - major cross-entity anomaly
+- critical deviations in any supported module
 
 ## Severity-aware routing
 
@@ -29,8 +30,8 @@ Use sparingly. Usually no alert unless there is specific user preference.
 Alert the role that can act directly.
 Examples:
 - supervisor for operational deviation
-- maintenance for emerging technical deterioration
-- quality for quality drift
+- maintenance for emerging technical deterioration or technical deviation
+- quality for quality drift or process deviation
 
 ### Critical
 Escalate quickly and explicitly.
@@ -38,10 +39,11 @@ Examples:
 - severe target risk -> gerente/directivo
 - critical technical instability -> maintenance + supervisor, and management if impact is material
 - major quality event -> quality + supervisor, and management if impact is material
+- major cross-entity or sustained deviation -> role responsible for action, plus management when impact is material
 
 ## Routing logic
-- operational issue -> Supervisor / Jefe de planta / Líder de turno
-- technical instability / failure risk -> Mantenimiento / Confiabilidad
+- operational issue / operational deviation -> Supervisor / Jefe de planta / Líder de turno
+- technical instability / failure risk / technical deviation -> Mantenimiento / Confiabilidad
 - quality deviation -> Calidad
 - material target risk / business impact -> Gerente or Directivo
 

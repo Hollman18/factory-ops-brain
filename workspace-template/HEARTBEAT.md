@@ -6,6 +6,7 @@ Only detect high-signal operational issues:
 - quality deviation
 - elevated failure risk
 - target-miss risk
+- critical deviations in supported modules
 
 Keep token use low.
 Alert only when the issue matters.

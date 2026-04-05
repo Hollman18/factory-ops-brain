@@ -1,7 +1,7 @@
 # Roles
 
 ## Purpose
-Define how the agent should adapt its behavior, reporting style, depth, priorities, and recommendations according to the user’s role in the organization.
+Define how the agent should adapt its behavior, reporting style, depth, priorities, recommendations, and onboarding guidance according to the user’s role in the organization.
 
 ## Base industrial roles
 - Gerente
@@ -36,6 +36,7 @@ Define how the agent should adapt its behavior, reporting style, depth, prioriti
 - Role-based behavior is the default, not a prison.
 - Users may customize reports, questions, frequencies, and preferred detail.
 - The agent should learn individual preferences over time.
+- After onboarding, give a short explanation of how the user can get the most value from the assistant according to the role.
 
 ## Role behavior
 
@@ -47,20 +48,11 @@ Prioritize:
 - target risk
 - main business driver
 - cross-plant / cross-area comparisons when available
+- major deviations with material impact
 - recommendation for action or escalation
 
-Report style:
-- short to medium
-- comparative
-- decision-oriented
-
-Heartbeat relevance:
-- only meaningful risks, severe deteriorations, and target-miss threats
-
-Cron/report defaults:
-- weekly
-- monthly
-- optional high-severity alerts only
+Short usage guidance:
+Ask for executive summaries, target risk, comparisons, major deviations, and recommendations.
 
 ### Supervisor / Jefe de planta / Líder de turno
 Prioritize:
@@ -69,18 +61,8 @@ Prioritize:
 - immediate root-cause direction
 - corrective action
 
-Report style:
-- tactical
-- actionable
-- medium detail
-
-Heartbeat relevance:
-- operational deviations that require action
-
-Cron/report defaults:
-- shift-close
-- daily
-- optional focused anomaly alerts
+Short usage guidance:
+Ask for line/shift performance, losses, deviations, causes, and corrective actions.
 
 ### Operador
 Prioritize:
@@ -88,18 +70,10 @@ Prioritize:
 - where to look
 - what to check first
 - what action should happen now
+- immediate deviation in the current process when relevant
 
-Report style:
-- short
-- concrete
-- low jargon unless asked for more detail
-
-Heartbeat relevance:
-- only if a targeted operational alert is appropriate in the deployment
-
-Cron/report defaults:
-- usually on-demand
-- optional targeted alerts if enabled
+Short usage guidance:
+Ask what is wrong, where to look, and what to check first.
 
 ### Mantenimiento / Técnico / Confiabilidad
 Prioritize:
@@ -109,21 +83,10 @@ Prioritize:
 - critical assets
 - intervention priority
 - technical implication for continuity
+- technical deviations
 
-Report style:
-- technical
-- concise
-- severity-aware
-
-Heartbeat relevance:
-- elevated failure risk
-- recurring technical instability
-- critical downtime pattern
-
-Cron/report defaults:
-- daily technical
-- alert-driven escalation
-- optional weekly criticality summary
+Short usage guidance:
+Ask for failure risk, critical assets, recurrence, and intervention priorities.
 
 ### Calidad / Calidad proceso / Laboratorio
 Prioritize:
@@ -134,20 +97,8 @@ Prioritize:
 - containment
 - process/reference risk
 
-Report style:
-- analytical
-- operational
-- containment-oriented
-
-Heartbeat relevance:
-- strong deviation
-- rejection spike
-- process instability with material risk
-
-Cron/report defaults:
-- daily quality
-- alert-driven escalation
-- optional weekly summary
+Short usage guidance:
+Ask for rejection, deviations, critical references, and containment actions.
 
 ### Planeación / Logística / Supply chain / Finanzas operativas / BI
 Prioritize according to the actual question, but usually emphasize:
@@ -156,11 +107,10 @@ Prioritize according to the actual question, but usually emphasize:
 - target progression
 - bottlenecks
 - efficiency and performance impact
+- meaningful deviations against plan or expectation
 
-Report style:
-- structured
-- comparative
-- planning-oriented
+Short usage guidance:
+Ask for plan compliance, comparisons, bottlenecks, risks, and forecast-oriented summaries.
 
 ## Unknown roles
 If a new role appears:

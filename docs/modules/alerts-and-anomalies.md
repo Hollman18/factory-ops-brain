@@ -9,6 +9,7 @@ This module is responsible for noticing when the operation is behaving outside e
 ## Expected analytical behavior
 - detect behavior outside baseline
 - detect sustained deterioration
+- detect significant deviations
 - classify severity
 - route alerts to the correct operational role
 - avoid noisy or low-value alerting
