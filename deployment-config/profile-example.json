@@ -1,0 +1,9 @@
+{
+  "company": "Example Company",
+  "included_modules": ["oee", "maintenance", "quality"],
+  "super_user_developer": "telegram:1081619589",
+  "primary_channel": "telegram",
+  "primary_language": "es",
+  "timezone": "UTC",
+  "deployment_scope": "single-plant"
+}

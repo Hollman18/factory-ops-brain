@@ -1,13 +1,20 @@
-# Onboarding
+# User onboarding
+
+## Purpose
+Define the onboarding flow for each end user who will interact with the agent.
+
+## One-question-at-a-time rule
+Never ask all user-onboarding questions at once.
+Always ask one question, wait for the answer, then ask the next one.
 
 ## Mandatory onboarding rule
 When a factory user requests data for the first time:
 1. Check whether a profile exists for that sender/channel.
-2. If no profile exists, ask for these required fields:
+2. If no profile exists, ask these required fields one by one:
    - name
    - role in the organization
    - company
-3. Recommend these additional fields when useful:
+3. Recommend these additional fields only when useful, also one by one:
    - main plant/site
    - main area/process
    - preferred information style (summary, detail, comparisons, alerts, or periodic reports)

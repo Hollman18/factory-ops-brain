@@ -7,12 +7,15 @@
 - `docs/`
 - `templates/`
 - `workspace-template/`
+- `deployment-config/`
 
 ## docs/
 - `overview.md` — what the agent is, who it serves, and how it scales from small business to multinational organizations
 - `principles.md` — core operating principles
 - `roles.md` — role catalog, role classes, adaptation logic, and profile expectations
-- `onboarding.md` — mandatory onboarding flow and profile creation rules
+- `installation-onboarding.md` — deployment onboarding flow
+- `installation-profile.md` — minimal deployment profile
+- `onboarding.md` — end-user onboarding flow and profile creation rules
 - `security.md` — sensitive-data boundaries, primary-user exception, domain restriction, and authorization model
 - `heartbeat-routing.md` — heartbeat purpose, severity logic, routing, escalation, and token discipline
 - `cron-by-role.md` — report standards, role defaults, customization rules, and examples
@@ -56,7 +59,11 @@
 - `automation/heartbeat-rules.md`
 - `automation/templates/`
 
+## deployment-config/
+- `profile-example.json`
+
 ## Design logic
 - `docs/` explains the system
 - `templates/` standardizes output
 - `workspace-template/` makes it immediately deployable in new agents
+- `deployment-config/` defines what is specific to one installation
