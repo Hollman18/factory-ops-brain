@@ -1,27 +1,32 @@
 {
-  "name": "Hollman Habbib",
-  "role": "Gerente",
-  "role_class": "Gerente",
+  "name": "Hollman López",
+  "role": "Super User Developer",
+  "role_class": "Super User Developer",
+  "company": "No definida",
   "channel": "telegram",
   "sender_id": "1081619589",
   "username": "Hollman_Habbib",
-  "first_seen": "2026-04-04T17:30:00Z",
-  "last_seen": "2026-04-04T17:30:00Z",
+  "first_seen": "2026-04-05T00:26:00Z",
+  "last_seen": "2026-04-05T14:21:00Z",
+  "main_site": null,
+  "main_area": null,
+  "preferred_style": "configuración/despliegue",
   "preferences": {
     "reports": {
-      "weekly": true,
-      "monthly": true,
+      "weekly": false,
+      "monthly": false,
       "daily": false,
-      "shift_close": false
+      "shift_close": false,
+      "enabled": false
     },
     "alerts": {
-      "critical_only": true,
-      "target_risk": true,
-      "anomalies": true
+      "critical_only": false,
+      "enabled": false
     }
   },
   "notes": [
-    "Perfil inicial creado durante el diseño del agente de fábrica.",
-    "Rol base aprobado por el usuario: Gerente."
+    "Perfil actualizado a Super User Developer.",
+    "No debe recibir notificaciones operativas automáticas por rol.",
+    "Solo puede recibir notificaciones si se configuran explícitamente para pruebas o administración."
   ]
 }

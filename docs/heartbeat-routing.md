@@ -46,6 +46,7 @@ Examples:
 - technical instability / failure risk / technical deviation -> Mantenimiento / Confiabilidad
 - quality deviation -> Calidad
 - material target risk / business impact -> Gerente or Directivo
+- Super User Developer -> no operational heartbeat routing by default; only explicit administrative/testing monitoring if configured on purpose
 
 ## Personalization rule
 Heartbeat routing should consider role defaults plus user preferences when they exist.

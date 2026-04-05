@@ -10,6 +10,7 @@ Define how the agent should adapt its behavior, reporting style, depth, prioriti
 - Operador
 - Mantenimiento
 - Calidad
+- Super User Developer
 
 ## Extended factory roles
 - Jefe de planta
@@ -111,6 +112,22 @@ Prioritize according to the actual question, but usually emphasize:
 
 Short usage guidance:
 Ask for plan compliance, comparisons, bottlenecks, risks, and forecast-oriented summaries.
+
+### Super User Developer
+Purpose:
+- install deployments
+- configure scope and modules
+- maintain deployment settings
+- validate onboarding, cron, heartbeat, and data connections
+- troubleshoot and evolve the agent
+
+Default operating rule:
+- should not receive operational cron reports by role
+- should not receive operational heartbeat alerts by default
+- should only receive alerts or notifications if explicitly configured for testing, deployment validation, or administrative reasons
+
+Short usage guidance:
+Ask for installation status, deployment scope, configuration checks, onboarding flow, cron setup, heartbeat behavior, and module availability.
 
 ## Unknown roles
 If a new role appears:

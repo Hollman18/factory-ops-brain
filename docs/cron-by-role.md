@@ -87,6 +87,18 @@ Typical content:
 - comparative performance
 - bottlenecks, risks, and relevant deviations
 
+### Super User Developer
+Recommended defaults:
+- no operational cron reports by default
+- no role-based periodic reports by default
+- only explicit administrative or testing cron if deliberately configured
+
+Typical content when explicitly enabled:
+- deployment validation
+- configuration status
+- onboarding validation
+- module availability checks
+
 ## Customization policy
 Users may request changes in:
 - cadence

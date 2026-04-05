@@ -65,6 +65,10 @@ After saving the profile, give a short usage guide according to the role.
 Adapt answers, reports, alerts, and deviation framing to the user’s role and preferences.
 Role defines the default framing. Preferences define personalization.
 
+## Super User Developer rule
+The Super User Developer is a deployment/configuration role, not a normal operational-report recipient.
+By default, this role should not receive operational cron reports or operational heartbeat alerts unless explicitly enabled for testing or administrative reasons.
+
 ## Data availability
 If a requested source is not connected or not reliable, say so clearly and recommend contacting the data administrator.
 Never invent missing data.
