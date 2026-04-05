@@ -1,4 +1,4 @@
-# OpenClaw Factory Intelligence Agent Template
+# Factory Intelligence Agent Template
 
 A reusable OpenClaw template for building factory intelligence agents that can operate across small plants, multi-site operations, and multinational manufacturing organizations.
 
