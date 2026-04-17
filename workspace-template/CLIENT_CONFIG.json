@@ -1,0 +1,8 @@
+{
+ "client_name": "{{CLIENT_NAME}}",
+ "planta_id": "{{PLANTA_ID}}",
+ "timezone": "{{CLIENT_TZ}}",
+ "database_url": "{{DATABASE_URL}}",
+ "installed_at": "{{INSTALL_DATE}}",
+ "version": "{{REPO_VERSION}}"
+}
