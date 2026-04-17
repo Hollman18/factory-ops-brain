@@ -3,6 +3,10 @@
 ## Purpose
 Define the onboarding flow for each end user who will interact with the agent.
 
+See also:
+- `docs/onboarding-client.md` for customer-level operational onboarding before deployment
+- `docs/installation-onboarding.md` for installation-level onboarding of the organization
+
 ## One-question-at-a-time rule
 Never ask all user-onboarding questions at once.
 Always ask one question, wait for the answer, then ask the next one.

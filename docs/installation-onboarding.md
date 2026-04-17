@@ -3,6 +3,10 @@
 ## Purpose
 Define the onboarding flow for setting up the agent in a new organization or deployment.
 
+See also:
+- `docs/onboarding-client.md` for the broader operational client-preparation checklist before and after technical installation
+- `docs/onboarding.md` for individual end-user onboarding after installation context exists
+
 ## Principle
 Installation onboarding should be simple. It should only ask what is truly needed and should not ask for data that will already come from connected sources or from built-in role defaults.
 
