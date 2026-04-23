@@ -1,0 +1,32 @@
+{
+  "tenant_id": "tenant-acme",
+  "tenant_name": "Acme Foods",
+  "user": {
+    "user_id": "u-123",
+    "name": "Laura",
+    "role": "Jefe de planta",
+    "role_class": "supervisor"
+  },
+  "scope": {
+    "plant_id": "plant-med-01",
+    "line_id": "line-4"
+  },
+  "timezone": "America/Bogota",
+  "language": "es",
+  "sources": {
+    "trim_consolidated": true,
+    "analytics": true,
+    "live_connectors": true,
+    "connections": [
+      {
+        "connection_id": "conn-opcua-01",
+        "type": "opcua",
+        "allowed_operations": ["test", "discover", "read"]
+      }
+    ]
+  },
+  "policies": {
+    "allowed_operations": ["read", "discover", "test"],
+    "approval_required_for": ["write", "control"]
+  }
+}
